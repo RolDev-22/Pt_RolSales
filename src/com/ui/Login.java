@@ -30,6 +30,7 @@ import javax.swing.JOptionPane;
  */
 public class Login extends JFrame {
 
+    private final Dashbord dshb = new Dashbord();
     private final Color clrText = new Color(0, 120, 150, 240);
     private final Font fontText = new Font("Agency FB", Font.BOLD, 18);
     private final Font fontInput = new Font("sansserif", Font.PLAIN, 18);
@@ -62,7 +63,6 @@ public class Login extends JFrame {
     private String checPsw;
 
     public Login() {
-
         this.setIconImage(icon);
         this.setTitle("INICIO DE SESIÓN - RolSales");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -243,7 +243,8 @@ public class Login extends JFrame {
             if (sc.userVerification(checUs, checPsw)) {
                 msjSystem("Bienvenid@ "+checUs);
                 clearInputs();
-                
+                dshb.setVisible(true);
+                this.setVisible(false);
             } else {
                 msjSystem("Usuario o contraseña Invalido");
                 clearInputs();

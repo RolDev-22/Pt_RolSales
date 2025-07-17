@@ -13,6 +13,5 @@ public class Main {
     
     public static void main(String[] args){
         lgn = new Login();
-        System.out.println("hola git");
     }
 }
