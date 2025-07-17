@@ -1,6 +1,8 @@
 package com.main;
 
-import com.ui.Login;
+import com.controller.LoginController;
+import com.model.UserModel;
+import com.view.LoginView;
 
 /**
  * Autor: Rolando Murillo Aguirre
@@ -9,9 +11,15 @@ import com.ui.Login;
  * Fecha: 8 jul. 2025
  */
 public class Main {
-    private static Login lgn;
+    private static LoginView lgn;
+    private static UserModel usMod;
+    private static LoginController logCont;
     
     public static void main(String[] args){
-        lgn = new Login();
+        lgn = new LoginView();
+        usMod = new UserModel();
+        logCont = new LoginController(usMod, lgn);
+        
+        logCont.iniciar();
     }
 }

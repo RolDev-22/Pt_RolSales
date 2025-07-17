@@ -1,4 +1,4 @@
-package com.ui;
+package com.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,7 +8,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -21,16 +20,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import com.controller.sessionController;
-import javax.swing.JOptionPane;
 
 /**
- * Autor: Rolando Murillo Aguirre Clase: Login Descripción: [Clase de extensión
- * para incio de sesion] Fecha: 8 jul. 2025
+ * Autor: Rolando Murillo Aguirre Clase: Login 
+ * Descripción: Interfaz gráfica del login de la app
+ * Fecha: 8 jul. 2025
  */
-public class Login extends JFrame {
+public class LoginView extends JFrame {
 
-    private final Dashbord dshb = new Dashbord();
     private final Color clrText = new Color(0, 120, 150, 240);
     private final Font fontText = new Font("Agency FB", Font.BOLD, 18);
     private final Font fontInput = new Font("sansserif", Font.PLAIN, 18);
@@ -44,25 +41,22 @@ public class Login extends JFrame {
     private final Image icon = imageIcon.getImage();
     private final Image iconUs = imageIconUs.getImage().getScaledInstance(110, 110, Image.SCALE_SMOOTH);
     private final ImageIcon resizeIcon = new ImageIcon(iconUs);
-    private final sessionController sc = new sessionController();
 
-    private JPanel container;
-    private JPanel boxContent;
-    private JLabel boxIconUs;
-    private TitledBorder tittleBorder;
-    private Border lineBorder;
-    private JPanel box1;
-    private JPanel box2;
-    private JLabel tex1;
-    private JLabel tex2;
-    private JTextField inputUser;
-    private JPasswordField inputPas;
-    private JButton btnEnter;
-    private GridBagConstraints gbc;
-    private String checUs;
-    private String checPsw;
+    public JPanel container;
+    public JPanel boxContent;
+    public JLabel boxIconUs;
+    public TitledBorder tittleBorder;
+    public Border lineBorder;
+    public JPanel box1;
+    public JPanel box2;
+    public JLabel tex1;
+    public JLabel tex2;
+    public JTextField inputUser;
+    public JPasswordField inputPas;
+    public JButton btnEnter;
+    public GridBagConstraints gbc;
 
-    public Login() {
+    public LoginView() {
         this.setIconImage(icon);
         this.setTitle("INICIO DE SESIÓN - RolSales");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -235,30 +229,5 @@ public class Login extends JFrame {
                         //dentro de su celda
         container.add(btnEnter, gbc); //Añadimos al contenedor con las 
                                         //configuraciones
-
-        btnEnter.addActionListener((ActionEvent e) -> {
-            checUs = inputUser.getText();
-            checPsw = new String(inputPas.getPassword());
-
-            if (sc.userVerification(checUs, checPsw)) {
-                msjSystem("Bienvenid@ "+checUs);
-                clearInputs();
-                dshb.setVisible(true);
-                this.setVisible(false);
-            } else {
-                msjSystem("Usuario o contraseña Invalido");
-                clearInputs();
-            }
-        });
-    }
-
-    private void clearInputs() {
-        inputUser.setText("");
-        inputPas.setText("");
-    }
-    
-    private void msjSystem(String msj){
-        JOptionPane.showMessageDialog(null, msj, "Respuesta del sistema",0 
-                ,resizeIcon);
     }
 }
