@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import utilsProyect.UtilsP;
 
 /**
  * Autor: Rolando Murillo Aguirre Clase: Login 
@@ -36,11 +37,6 @@ public class LoginView extends JFrame {
     private final Border brdInput = BorderFactory.createCompoundBorder(
             BorderFactory.createLineBorder(clrText),
             BorderFactory.createEmptyBorder(5, 1, 2, -10));
-    private final ImageIcon imageIcon = new ImageIcon(getClass().getResource("/assets/log.png"));
-    private final ImageIcon imageIconUs = new ImageIcon(getClass().getResource("/assets/log_user.png"));
-    private final Image icon = imageIcon.getImage();
-    private final Image iconUs = imageIconUs.getImage().getScaledInstance(110, 110, Image.SCALE_SMOOTH);
-    private final ImageIcon resizeIcon = new ImageIcon(iconUs);
 
     public JPanel container;
     public JPanel boxContent;
@@ -57,7 +53,7 @@ public class LoginView extends JFrame {
     public GridBagConstraints gbc;
 
     public LoginView() {
-        this.setIconImage(icon);
+        this.setIconImage(new UtilsP().iconWindow());
         this.setTitle("INICIO DE SESIÓN - RolSales");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(400, 500);
@@ -96,7 +92,7 @@ public class LoginView extends JFrame {
         container.setBackground(new Color(0, 0, 0, 0));
 
         boxIconUs.setLayout(new FlowLayout());
-        boxIconUs.setIcon(resizeIcon);
+        boxIconUs.setIcon(new UtilsP().resizeIcon());
         boxIconUs.setBackground(Color.RED);
 
         /*
