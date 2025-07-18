@@ -1,6 +1,8 @@
 package utilsProyect;
 
+import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
 /**
@@ -17,6 +19,8 @@ public class UtilsP {
     
     private final Image iconUs = imageIconUs.getImage()
             .getScaledInstance(110, 110, Image.SCALE_SMOOTH);
+    private final Toolkit tk = Toolkit.getDefaultToolkit();
+    private Dimension screnSize = tk.getScreenSize();
     
     public ImageIcon resizeIcon;
     public Image icon;
@@ -30,6 +34,10 @@ public class UtilsP {
 
     public Image iconWindow (){
         return icon = imageIcon.getImage();
+    }
+    
+    public int heigthWindow(){
+        return screnSize.height;
     }
     
 }
