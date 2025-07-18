@@ -14,6 +14,10 @@ public class DashbordController {
     
     public DashbordController(DashbordView dashViewP) {
         this.dashView = dashViewP;
+        
+        this.dashView.men.btnPb.addActionListener((e) -> {
+            dashView.dispose();
+        });
     }
 
     public void iniciar() {

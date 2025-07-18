@@ -1,12 +1,12 @@
 package com.view;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import utilsProyect.UtilsP;
+import com.view.component.Menu;
 
 /**
  * Autor: Rolando Murillo Aguirre Clase: DashbordView Descripción: Interfaz
@@ -18,8 +18,7 @@ public class DashbordView extends JFrame {
 
     private JPanel boxContent;
     private JPanel container;
-    private JButton btnPb;
-    
+    public Menu men = new Menu(); 
 
     public DashbordView() {
         this.setUndecorated(true);
@@ -37,28 +36,10 @@ public class DashbordView extends JFrame {
         boxContent = new JPanel();//Box de contenido general
         boxContent.setBackground(new Color(67, 170, 211, 50));
         boxContent.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-
-        container();
+        
+        boxContent.add(men.menInit());
+        
         this.add(boxContent);
     }
 
-    private void container() {
-        container = new JPanel();//Contenedor del general
-        container.setLayout(null);
-        container.setPreferredSize(new Dimension(250, heihtgWindow));
-
-        btnGerally();
-        boxContent.add(container);
-    }
-
-    private void btnGerally() {
-        btnPb = new JButton("Salir");
-        btnPb.setSize(200, 100);
-
-        container.add(btnPb);
-
-        btnPb.addActionListener((e) -> {
-            this.dispose();
-        });
-    }
 }
