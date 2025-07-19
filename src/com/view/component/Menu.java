@@ -1,18 +1,12 @@
 package com.view.component;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
-import utilsProyect.UtilsP;
 
 /**
  * Autor: Rolando Murillo Aguirre Clase: Menu Descripción: Clase que contendrá
@@ -21,13 +15,13 @@ import utilsProyect.UtilsP;
 public class Menu extends JPanel {
 
     private GridBagConstraints gbc;
-    public JButton btnPb;
+    public JButton btnExit;
 
     public Menu() {
         gbc = new GridBagConstraints();
 
         this.setLayout(new GridBagLayout());
-        this.setPreferredSize(new Dimension(250, new UtilsP().heigthWindow()));
+        this.setPreferredSize(new Dimension(250,0));
         //this.setBackground(new Color(178, 198, 213));
         this.setBackground(new Color(18, 52, 88));
         initComponent();
@@ -36,14 +30,14 @@ public class Menu extends JPanel {
     private void initComponent() {
         btnGerally();
     }
-
+    
     private void btnGerally() {
-        btnPb = new JButton("Salir");
-        btnPb.setPreferredSize(new Dimension(200, 50));
-        btnPb.setFocusable(false);
-        btnPb.setFont(new Font("Arial", Font.BOLD, 18));
-        btnPb.setForeground(Color.WHITE);
-        btnPb.setBackground(new Color(220, 60, 34));
+        btnExit = new JButton("Salir");
+        btnExit.setPreferredSize(new Dimension(200, 50));
+        btnExit.setFocusable(false);
+        btnExit.setFont(new Font("Arial", Font.BOLD, 18));
+        btnExit.setForeground(Color.WHITE);
+        btnExit.setBackground(new Color(220, 60, 34));
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -51,7 +45,7 @@ public class Menu extends JPanel {
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
-        this.add(btnPb, gbc);
+        this.add(btnExit, gbc);
     }
 
     public Menu menInit() {
