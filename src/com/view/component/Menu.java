@@ -1,9 +1,17 @@
 package com.view.component;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import utilsProyect.UtilsP;
 
 /**
@@ -12,12 +20,16 @@ import utilsProyect.UtilsP;
  */
 public class Menu extends JPanel {
 
+    private GridBagConstraints gbc;
     public JButton btnPb;
 
     public Menu() {
-        this.setLayout(null);
+        gbc = new GridBagConstraints();
+
+        this.setLayout(new GridBagLayout());
         this.setPreferredSize(new Dimension(250, new UtilsP().heigthWindow()));
-        this.setBackground(Color.yellow);
+        //this.setBackground(new Color(178, 198, 213));
+        this.setBackground(new Color(18, 52, 88));
         initComponent();
     }
 
@@ -27,12 +39,22 @@ public class Menu extends JPanel {
 
     private void btnGerally() {
         btnPb = new JButton("Salir");
-        btnPb.setSize(200, 50);
+        btnPb.setPreferredSize(new Dimension(200, 50));
+        btnPb.setFocusable(false);
+        btnPb.setFont(new Font("Arial", Font.BOLD, 18));
+        btnPb.setForeground(Color.WHITE);
+        btnPb.setBackground(new Color(220, 60, 34));
 
-        this.add(btnPb);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER;
+        this.add(btnPb, gbc);
     }
-    
-    public Menu menInit(){
+
+    public Menu menInit() {
         return this;
     }
 }
