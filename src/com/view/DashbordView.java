@@ -8,6 +8,8 @@ import com.view.component.Menu;
 import com.view.component.Nav;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import javax.swing.BorderFactory;
+import javax.swing.border.LineBorder;
 
 /**
  * Autor: Rolando Murillo Aguirre Clase: DashbordView Descripción: Interfaz
@@ -40,7 +42,7 @@ public class DashbordView extends JFrame {
         boxContent.setBackground(new Color(67, 170, 211, 50));
 
         module = new JPanel();
-        module.setBackground(Color.red);
+        module.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
 
         gbc.gridx = 1;
         gbc.gridy = 0;
