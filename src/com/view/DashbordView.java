@@ -1,16 +1,13 @@
 package com.view;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import utilsProyect.UtilsP;
 import com.view.component.Menu;
 import com.view.component.Nav;
-import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 
 /**
  * Autor: Rolando Murillo Aguirre Clase: DashbordView Descripción: Interfaz

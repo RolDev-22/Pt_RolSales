@@ -5,8 +5,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import utilsProyect.UtilsP;
 
 /**
  * Autor: Rolando Murillo Aguirre Clase: Menu Descripción: Clase que contendrá
@@ -15,6 +18,7 @@ import javax.swing.JPanel;
 public class Menu extends JPanel {
 
     private GridBagConstraints gbc;
+    private JLabel logoLabel;
     public JButton btnExit;
 
     public Menu() {
@@ -28,7 +32,23 @@ public class Menu extends JPanel {
     }
 
     private void initComponent() {
+        labelLogo();
         btnGerally();
+    }
+    
+    private void labelLogo(){
+        logoLabel = new JLabel(new UtilsP().resizeIcon());
+        logoLabel.setPreferredSize(new Dimension(100,100));
+        
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.weightx = 1.0;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(0, 0, 10, 0);
+        this.add(logoLabel, gbc);
     }
     
     private void btnGerally() {
@@ -40,7 +60,7 @@ public class Menu extends JPanel {
         btnExit.setBackground(new Color(220, 60, 34));
 
         gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.gridy = 1;
         gbc.gridheight = 1;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.NONE;
@@ -48,6 +68,8 @@ public class Menu extends JPanel {
         this.add(btnExit, gbc);
     }
 
+    
+    
     public Menu menInit() {
         return this;
     }
