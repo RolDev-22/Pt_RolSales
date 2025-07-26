@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import com.utils.UtilsP;
 import com.view.component.Menu;
 import com.view.component.Nav;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.BorderFactory;
@@ -30,10 +31,12 @@ public class DashbordView extends JFrame {
         menu = new Menu(util);
         navbar = new Nav(util);
 
-        this.setUndecorated(true);
+        this.setTitle("SISTEME DE VENTA ROLSALES");
+        this.setUndecorated(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setIconImage(this.util.iconWindow());
+        this.setMinimumSize(new Dimension(700, 600));
         initComponent();
     }
 
