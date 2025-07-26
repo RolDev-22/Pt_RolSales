@@ -1,6 +1,9 @@
 package com.view.component;
 
+import com.utils.UtilsP;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
@@ -15,19 +18,22 @@ public class LoadingPage extends JFrame {
 
     public LoadingPage() {
 
-        setTitle("Cargando...");
         setUndecorated(true); // Sin bordes ni botones
-        setSize(300, 100);
+        setSize(250, 150);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Evita cerrar accidentalmente
         setLayout(new BorderLayout(10, 10));
 
-        JLabel message = new JLabel("Cargando, por favor espere...");
+        JLabel message = new JLabel("CARGANDO, POR FAVOR ESPERE...");
+        message.setFont(new Font("arial", Font.ROMAN_BASELINE, 12));
+        message.setForeground(UtilsP.COLOR_BTN_GENERAL);
         message.setHorizontalAlignment(SwingConstants.CENTER);
 
         JProgressBar progressBar = new JProgressBar();
         progressBar.setIndeterminate(true); // Barra en modo "infinito"
         progressBar.setBorderPainted(false);
+        progressBar.setBackground(UtilsP.COLOR_BACKGROUND);
+        progressBar.setForeground(UtilsP.COLOR_BTN_AUX);
 
         add(message, BorderLayout.CENTER);
         add(progressBar, BorderLayout.SOUTH);
