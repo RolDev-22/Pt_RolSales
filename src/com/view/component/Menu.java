@@ -54,12 +54,12 @@ public class Menu extends JPanel {
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridheight = 1;
+        gbc.gridheight = 2;
         gbc.gridwidth = 1;
         gbc.weightx = 1.0;
-        gbc.fill = GridBagConstraints.NONE;
+        gbc.fill = GridBagConstraints.VERTICAL;
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(0, 0, 50, 0);
+        gbc.insets = new Insets(50, 0, 10, 0);
         this.add(logoLabel, gbc);
     }
 
@@ -72,29 +72,31 @@ public class Menu extends JPanel {
         btnReportes = utlsTools.createMenuButton("REPORTES");
         btnClientes = utlsTools.createMenuButton("CLIENTES");
         btnEdicion = utlsTools.createMenuButton("EDITAR");
-        btnExit = utlsTools.createMenuButton("SALIR", UtilsP.COLOR_BTN_AUX);
+        btnExit = utlsTools.createMenuButton("SALIR", UtilsP.COLOR_BTN_AUX2);
 
         //Implementación del método para agregar los botones al panel del menú
         //se pasa por parámetro el botón, margin superior deseado y posición
         //fila donde se ubicará dentro del GridBagLayout
-        addButton(btnVentas, 20, 1);
-        addButton(btnInventario, 20, 2);
-        addButton(btnResumen, 20, 3);
-        addButton(btnReportes, 20, 4);
-        addButton(btnClientes, 20, 5);
-        addButton(btnEdicion, 20, 6);
-        addButton(btnExit, 70, 7);
+        addButton(btnVentas, 25, 2, 0);
+        addButton(btnInventario, 25, 3, 0);
+        addButton(btnResumen, 25, 4, 0);
+        addButton(btnReportes, 25, 5, 0);
+        addButton(btnClientes, 25, 7, 0);
+        addButton(btnEdicion, 25, 8, 0);
+        addButton(btnExit, 50, 9, 20);
     }
 
     //Método para la agregación de los bótones al panel del menú
-    private void addButton(JButton btnP, int insetP, int gridYP) {
+    private void addButton(JButton btnP, int insetT, int gridYP, int insetB) {
         gbc.gridx = 0;
         gbc.gridy = gridYP;
         gbc.gridheight = 1;
         gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.NONE;
+        gbc.fill = GridBagConstraints.VERTICAL;
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(insetP, 0, 0, 0);
+        gbc.weightx = 0.0;
+        gbc.weighty = 1.0;
+        gbc.insets = new Insets(insetT, 0, insetB, 0);
         this.add(btnP, gbc);
     }
 

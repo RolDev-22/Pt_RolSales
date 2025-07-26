@@ -25,7 +25,7 @@ public class LoadingPage extends JFrame {
         setLayout(new BorderLayout(10, 10));
 
         JLabel message = new JLabel("CARGANDO, POR FAVOR ESPERE...");
-        message.setFont(new Font("arial", Font.ROMAN_BASELINE, 12));
+        message.setFont(new Font("Georgia", Font.ITALIC, 12));
         message.setForeground(UtilsP.COLOR_BTN_GENERAL);
         message.setHorizontalAlignment(SwingConstants.CENTER);
 
