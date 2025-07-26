@@ -18,6 +18,7 @@ public class UtilsP implements ButtonFactory {
     public static final Color COLOR_BTN_GENERAL = new Color(56, 179, 217, 240);
     public static final Color COLOR_BTN_AUX = new Color(23, 240, 100, 240);
     public static final Color COLOR_BACKGROUND = new Color(18, 52, 88);
+    public static final Color COLOR_BTN_AUX2 = new Color(240, 30, 90);
 
     //Imagen de usuario para la aplicacíon
     private final ImageIcon imageIconUs = new ImageIcon(getClass()
@@ -28,6 +29,9 @@ public class UtilsP implements ButtonFactory {
     //Redimención de la imagen tipo icono de usuario para mejor adaptación
     private final Image iconUs = imageIconUs.getImage()
             .getScaledInstance(110, 110, Image.SCALE_SMOOTH);
+    private final Image iconIcon = imageIcon.getImage()
+            .getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+    private final Image icon = imageIcon.getImage();
     //variable que permite implementar la clase Toolkit para luego obtener el 
     //width de la pantalla
     private final Toolkit tk = Toolkit.getDefaultToolkit();
@@ -36,16 +40,21 @@ public class UtilsP implements ButtonFactory {
     private final Dimension screnSize = tk.getScreenSize();
 
     //Icono de usuario redimencionado para buena adaptación visual
-    private final ImageIcon resizeIcon = new ImageIcon(iconUs);
+    private final ImageIcon resizeIconUs = new ImageIcon(iconUs);
     //Icono de la app
-    private final Image icon = imageIcon.getImage();
+    private final ImageIcon resizeIconApp = new ImageIcon(iconIcon);
 
     public UtilsP() {
     }
 
     //Método que retorna el icono de usuario redimencionado
     public ImageIcon resizeIcon() {
-        return resizeIcon;
+        return resizeIconUs;
+    }
+
+    //Método que retorna el icono de la app redimencionado
+    public ImageIcon resizeIconApp() {
+        return resizeIconApp;
     }
 
     //Método que retorna el icono de la app para uso
@@ -58,23 +67,9 @@ public class UtilsP implements ButtonFactory {
         return screnSize.height;
     }
 
-    //Método que permite la creación de botones para el menú
-    //public JButton btnMenuGenerate(String textBtnP, Color clrBtnP) {
-
-        //JButton btnGenerate = new JButton(textBtnP);
-
-        //btnGenerate.setPreferredSize(new Dimension(200, 50));
-        //btnGenerate.setFocusable(false);
-        //btnGenerate.setFont(new Font("Arial", Font.BOLD, 18));
-       // btnGenerate.setForeground(Color.WHITE);
-       // btnGenerate.setBackground(clrBtnP);
-
-     //   return btnGenerate;
-   // }
-
     @Override
     public JButton createMenuButton(String text) {
-       return createMenuButton(text, COLOR_BTN_GENERAL);
+        return createMenuButton(text, COLOR_BTN_GENERAL);
     }
 
     @Override
@@ -84,9 +79,13 @@ public class UtilsP implements ButtonFactory {
         btn.setForeground(Color.WHITE);
         btn.setFocusPainted(false);
         btn.setBorderPainted(false);
-        btn.setFont(new Font("Arial", Font.BOLD, 16));
-        btn.setPreferredSize(new Dimension(200, 50));
+        btn.setFont(new Font("Tahoma", Font.ROMAN_BASELINE, 16));
+        btn.setPreferredSize(new Dimension(200, 0));
         return btn;
+    }
+
+    public Image getIcon() {
+        return icon;
     }
 
 }
