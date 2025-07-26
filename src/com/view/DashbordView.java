@@ -9,7 +9,6 @@ import com.view.component.Nav;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.BorderFactory;
-import javax.swing.border.LineBorder;
 
 /**
  * Autor: Rolando Murillo Aguirre Clase: DashbordView Descripción: Interfaz
@@ -20,16 +19,20 @@ public class DashbordView extends JFrame {
     private JPanel boxContent;
     private JPanel module;
     private GridBagConstraints gbc;
-    public Menu men = new Menu();
-    public Nav nav = new Nav();
+    private Menu menu;
+    private Nav navbar;
+    private UtilsP util;
 
     public DashbordView() {
         gbc = new GridBagConstraints();
+        util = new UtilsP();
+        menu = new Menu(util);
+        navbar = new Nav();
 
         this.setUndecorated(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        this.setIconImage(new UtilsP().iconWindow());
+        this.setIconImage(this.util.iconWindow());
         initComponent();
     }
 
@@ -52,7 +55,7 @@ public class DashbordView extends JFrame {
         gbc.weighty = 0.0;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.NORTH;
-        boxContent.add(nav.navInit(), gbc);
+        boxContent.add(navbar, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -62,7 +65,7 @@ public class DashbordView extends JFrame {
         gbc.weighty = 1.0;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.WEST;
-        boxContent.add(men.menInit(), gbc);
+        boxContent.add(menu, gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 2;
@@ -72,6 +75,14 @@ public class DashbordView extends JFrame {
         boxContent.add(module, gbc);
 
         this.add(boxContent);
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public Nav getNav() {
+        return navbar;
     }
 
 }

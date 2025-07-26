@@ -2,7 +2,6 @@ package com.view.component;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -19,21 +18,21 @@ public class Menu extends JPanel {
 
     private final Color clBtnGeneral = new Color(56, 179, 217, 240);
     private final Color clBtnAux = new Color(23, 240, 100, 240);
+    private final UtilsP utlsTools;
 
     private GridBagConstraints gbc;
     private JLabel logoLabel;
-    private UtilsP utlsTools;
-    public JButton btnVentas;
-    public JButton btnResumen;
-    public JButton btnEdicion;
-    public JButton btnInventario;
-    public JButton btnReportes;
-    public JButton btnClientes;
-    public JButton btnExit;
+    private JButton btnVentas;
+    private JButton btnResumen;
+    private JButton btnEdicion;
+    private JButton btnInventario;
+    private JButton btnReportes;
+    private JButton btnClientes;
+    private JButton btnExit;
 
-    public Menu() {
+    public Menu(UtilsP utlsP) {
         gbc = new GridBagConstraints();
-        utlsTools = new UtilsP();
+        this.utlsTools = utlsP;
 
         this.setLayout(new GridBagLayout());
         this.setPreferredSize(new Dimension(250, 0));
@@ -44,7 +43,7 @@ public class Menu extends JPanel {
 
     private void initComponent() {
         labelLogo();
-        btnGerally();
+        initMenuButtons();
     }
 
     private void labelLogo() {
@@ -62,7 +61,7 @@ public class Menu extends JPanel {
         this.add(logoLabel, gbc);
     }
 
-    private void btnGerally() {
+    private void initMenuButtons() {
         btnVentas = utlsTools.btnMenuGenerate("VENTAS", clBtnGeneral);
         btnInventario = utlsTools.btnMenuGenerate("INVENTARIO", clBtnGeneral);
         btnResumen = utlsTools.btnMenuGenerate("RESUMEN", clBtnGeneral);
@@ -71,71 +70,51 @@ public class Menu extends JPanel {
         btnEdicion = utlsTools.btnMenuGenerate("EDITAR", clBtnGeneral);
         btnExit = utlsTools.btnMenuGenerate("SALIR", clBtnAux);
 
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.gridheight = 1;
-        gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(20, 0, 0, 0);
-        this.add(btnVentas, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.gridheight = 1;
-        gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(20, 0, 0, 0);
-        this.add(btnInventario, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        gbc.gridheight = 1;
-        gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(20, 0, 0, 0);
-        this.add(btnResumen, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 4;
-        gbc.gridheight = 1;
-        gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(20, 0, 0, 0);
-        this.add(btnReportes, gbc);
-     
-        gbc.gridx = 0;
-        gbc.gridy = 5;
-        gbc.gridheight = 1;
-        gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(20, 0, 0, 0);
-        this.add(btnClientes, gbc);
-        
-        gbc.gridx = 0;
-        gbc.gridy = 6;
-        gbc.gridheight = 1;
-        gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(20, 0, 0, 0);
-        this.add(btnEdicion, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 7;
-        gbc.gridheight = 1;
-        gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(70, 0, 0, 0);
-        this.add(btnExit, gbc);
+        addButton(btnVentas, 20, 1);
+        addButton(btnInventario, 20, 2);
+        addButton(btnResumen, 20, 3);
+        addButton(btnReportes, 20, 4);
+        addButton(btnClientes, 20, 5);
+        addButton(btnEdicion, 20, 6);
+        addButton(btnExit, 70, 7);
     }
 
-    public Menu menInit() {
-        return this;
+    private void addButton(JButton btnP,int insetP, int gridYP){
+        gbc.gridx = 0;
+        gbc.gridy = gridYP;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(insetP, 0, 0, 0);
+        this.add(btnP, gbc);
+    }
+    
+    public JButton getBtnVentas() {
+        return btnVentas;
+    }
+
+    public JButton getBtnResumen() {
+        return btnResumen;
+    }
+
+    public JButton getBtnEdicion() {
+        return btnEdicion;
+    }
+
+    public JButton getBtnInventario() {
+        return btnInventario;
+    }
+
+    public JButton getBtnReportes() {
+        return btnReportes;
+    }
+
+    public JButton getBtnClientes() {
+        return btnClientes;
+    }
+
+    public JButton getBtnExit() {
+        return btnExit;
     }
 }
