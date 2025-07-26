@@ -18,7 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import utilsProyect.UtilsP;
+import com.utils.UtilsP;
 
 /**
  * Autor: Rolando Murillo Aguirre Clase: Login 

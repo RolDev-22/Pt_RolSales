@@ -4,7 +4,7 @@ import com.model.UserModel;
 import com.view.LoginView;
 import com.view.DashbordView;
 import javax.swing.JOptionPane;
-import utilsProyect.UtilsP;
+import com.utils.UtilsP;
 
 /**
  * Autor: Rolando Murillo Aguirre Clase: LoginController 

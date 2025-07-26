@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.view.DashbordView;
+import java.awt.Color;
 
 /**
  * Autor: Rolando Murillo Aguirre Clase: DashbordController Descripción: Clase
@@ -18,6 +19,31 @@ public class DashbordController {
         this.dashView.getMenu().getBtnExit().addActionListener((e) -> {
             dashView.dispose();
         });
+        
+        this.dashView.getMenu().getBtnVentas().addActionListener((e) -> {
+            dashView.getModule().setBackground(Color.red);
+        });
+        
+        this.dashView.getMenu().getBtnInventario().addActionListener((e) -> {
+            dashView.getModule().setBackground(Color.BLUE);
+        });
+        
+        this.dashView.getMenu().getBtnResumen().addActionListener((e) -> {
+            dashView.getModule().setBackground(Color.CYAN);
+        });
+        
+        this.dashView.getMenu().getBtnReportes().addActionListener((e) -> {
+            dashView.getModule().setBackground(Color.GREEN);
+        });
+        
+        this.dashView.getMenu().getBtnClientes().addActionListener((e) -> {
+            dashView.getModule().setBackground(Color.MAGENTA);
+        });
+        
+        this.dashView.getMenu().getBtnEdicion().addActionListener((e) -> {
+            dashView.getModule().setBackground(Color.ORANGE);
+        });
+        
     }
 
     public void iniciar() {

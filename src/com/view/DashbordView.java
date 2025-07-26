@@ -3,7 +3,7 @@ package com.view;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import utilsProyect.UtilsP;
+import com.utils.UtilsP;
 import com.view.component.Menu;
 import com.view.component.Nav;
 import java.awt.GridBagConstraints;
@@ -16,18 +16,19 @@ import javax.swing.BorderFactory;
  */
 public class DashbordView extends JFrame {
 
+    private final GridBagConstraints gbc;
+    private final Menu menu;
+    private final Nav navbar;
+    private final UtilsP util;
+
     private JPanel boxContent;
     private JPanel module;
-    private GridBagConstraints gbc;
-    private Menu menu;
-    private Nav navbar;
-    private UtilsP util;
 
     public DashbordView() {
         gbc = new GridBagConstraints();
         util = new UtilsP();
         menu = new Menu(util);
-        navbar = new Nav();
+        navbar = new Nav(util);
 
         this.setUndecorated(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -42,9 +43,9 @@ public class DashbordView extends JFrame {
 
     private void mainPanel() {
         boxContent = new JPanel(new GridBagLayout());//Box de contenido general
-        boxContent.setBackground(new Color(67, 170, 211, 50));
+        module = new JPanel();//Contenido de las pantallas según el módulo
 
-        module = new JPanel();
+        boxContent.setBackground(new Color(67, 170, 211, 50));
         module.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
 
         gbc.gridx = 1;
@@ -85,4 +86,7 @@ public class DashbordView extends JFrame {
         return navbar;
     }
 
+    public JPanel getModule() {
+        return module;
+    }
 }
