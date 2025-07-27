@@ -1,7 +1,7 @@
 package com.controller;
 
 import com.view.DashbordView;
-import java.awt.Color;
+import javax.swing.JButton;
 
 /**
  * Autor: Rolando Murillo Aguirre Clase: DashbordController Descripción: Clase
@@ -12,41 +12,37 @@ import java.awt.Color;
 public class DashbordController {
 
     private DashbordView dashView;
-    
+
     public DashbordController(DashbordView dashViewP) {
         this.dashView = dashViewP;
-        
-        this.dashView.getMenu().getBtnExit().addActionListener((e) -> {
-            dashView.dispose();
-        });
-        
-        this.dashView.getMenu().getBtnVentas().addActionListener((e) -> {
-            dashView.getModule().setBackground(Color.red);
-        });
-        
-        this.dashView.getMenu().getBtnInventario().addActionListener((e) -> {
-            dashView.getModule().setBackground(Color.BLUE);
-        });
-        
-        this.dashView.getMenu().getBtnResumen().addActionListener((e) -> {
-            dashView.getModule().setBackground(Color.CYAN);
-        });
-        
-        this.dashView.getMenu().getBtnReportes().addActionListener((e) -> {
-            dashView.getModule().setBackground(Color.GREEN);
-        });
-        
-        this.dashView.getMenu().getBtnClientes().addActionListener((e) -> {
-            dashView.getModule().setBackground(Color.MAGENTA);
-        });
-        
-        this.dashView.getMenu().getBtnEdicion().addActionListener((e) -> {
-            dashView.getModule().setBackground(Color.ORANGE);
-        });
-        
+        initListeners();
     }
 
     public void iniciar() {
         dashView.setVisible(true);
+    }
+
+    private void initListeners() {
+        // Salir
+        dashView.getMenu().getBtnExit().addActionListener(e -> dashView.dispose());
+
+        // Listeners para módulos
+        addModuleListener(dashView.getMenu().getBtnVentas(), "MÓDULO DE VENTAS");
+        addModuleListener(dashView.getMenu().getBtnInventario(), "MÓDULO DE INVENTARIO");
+        addModuleListener(dashView.getMenu().getBtnResumen(), "MÓDULO DE RESUMEN");
+        addModuleListener(dashView.getMenu().getBtnReportes(), "MÓDULO DE REPORTES");
+        addModuleListener(dashView.getMenu().getBtnClientes(), "MÓDULO DE CLIENTES");
+        addModuleListener(dashView.getMenu().getBtnEdicion(), "MÓDULO DE EDICIÓN");
+    }
+
+    /**
+     * Método para registrar acción a un botón de menú y cambiar contenido del
+     * módulo.
+     */
+    private void addModuleListener(JButton button, String moduleDescription) {
+        button.addActionListener(e -> {
+            dashView.getNav().getDescriptionModule().setText(moduleDescription);
+            dashView.getNav().getIconModule().setIcon(button.getIcon());
+        });
     }
 }
