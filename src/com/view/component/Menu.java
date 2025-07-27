@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import com.utils.UtilsP;
+import javax.swing.ImageIcon;
 
 /**
  * Autor: Rolando Murillo Aguirre Clase: Menu Descripción: Clase que contendrá
@@ -49,7 +50,7 @@ public class Menu extends JPanel {
 
     //Método privado que gestiona el label del logo del menú
     private void labelLogo() {
-        logoLabel = new JLabel(utlsTools.resizeIcon());
+        logoLabel = new JLabel(utlsTools.resizeIconApp());
         logoLabel.setPreferredSize(new Dimension(100, 100));
 
         gbc.gridx = 0;
@@ -66,13 +67,20 @@ public class Menu extends JPanel {
     //Método privado que gestiona los botones del menú
     private void initMenuButtons() {
         //Creación de los botones mediante el método de la clase UtilsP
-        btnVentas = utlsTools.createMenuButton("VENTAS");
-        btnInventario = utlsTools.createMenuButton("INVENTARIO");
-        btnResumen = utlsTools.createMenuButton("RESUMEN");
-        btnReportes = utlsTools.createMenuButton("REPORTES");
-        btnClientes = utlsTools.createMenuButton("CLIENTES");
-        btnEdicion = utlsTools.createMenuButton("EDITAR");
-        btnExit = utlsTools.createMenuButton("SALIR", UtilsP.COLOR_BTN_AUX2);
+        btnVentas = utlsTools.createMenuButton("VENTAS",
+                utlsTools.getIc_vts());
+        btnInventario = utlsTools.createMenuButton("INVENTARIO",
+                utlsTools.getIc_stk());
+        btnResumen = utlsTools.createMenuButton("RESUMEN",
+                utlsTools.getIc_rsm());
+        btnReportes = utlsTools.createMenuButton("REPORTES",
+                utlsTools.getIc_rpts());
+        btnClientes = utlsTools.createMenuButton("CLIENTES",
+                utlsTools.getIc_clts());
+        btnEdicion = utlsTools.createMenuButton("EDITAR",
+                utlsTools.getIc_edt());
+        btnExit = utlsTools.createMenuButton("SALIR",
+                UtilsP.COLOR_BTN_AUX2, utlsTools.getIc_ext());
 
         //Implementación del método para agregar los botones al panel del menú
         //se pasa por parámetro el botón, margin superior deseado y posición
