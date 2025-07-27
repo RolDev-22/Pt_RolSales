@@ -19,7 +19,7 @@ public class DashbordController {
     public DashbordController(DashbordView dashViewP, String usrP, ImageIcon ic_initialP) {
         this.dashView = dashViewP;
         this.user = usrP;
-        initialNav(initialModule,ic_initialP);
+        initialNav(initialModule,ic_initialP,user);
         initListeners();
     }
 
@@ -51,9 +51,10 @@ public class DashbordController {
         });
     }
     
-    private void initialNav(String txtInit, ImageIcon imgInit){
+    private void initialNav(String txtInit, ImageIcon imgInit, String usr){
         dashView.getNav().getDescriptionModule().setText(txtInit);
         dashView.getNav().getIconModule().setIcon(imgInit);
+        dashView.getNav().getUserName().setText(usr);
     }
     
 }

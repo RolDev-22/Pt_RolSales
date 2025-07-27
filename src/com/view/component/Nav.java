@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 public final class Nav extends JPanel {
     private JLabel descriptionModule;
     private JLabel iconModule;
+    private JLabel userName;
 
     public Nav(UtilsP utlsP) {
         this.setBackground(UtilsP.COLOR_BACKGROUND);
@@ -29,10 +30,14 @@ public final class Nav extends JPanel {
     private void contenDescription(){
         descriptionModule = new JLabel();
         iconModule = new JLabel();
+        userName = new JLabel();
         descriptionModule.setFont(new Font("Georgina", Font.PLAIN, 18));
         descriptionModule.setForeground(UtilsP.COLOR_BTN_GENERAL);
+        userName.setFont(new Font("Georgina", Font.PLAIN, 18));
+        userName.setForeground(UtilsP.COLOR_BTN_GENERAL);
         this.add(descriptionModule);
         this.add(iconModule);
+        this.add(userName);
     }
 
     public JLabel getDescriptionModule() {
@@ -41,6 +46,10 @@ public final class Nav extends JPanel {
     
     public JLabel getIconModule(){
         return iconModule;
+    }
+    
+    public JLabel getUserName(){
+        return userName;
     }
     
 }
