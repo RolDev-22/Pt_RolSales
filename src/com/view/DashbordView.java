@@ -36,7 +36,7 @@ public class DashbordView extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setIconImage(this.util.iconWindow());
-        this.setMinimumSize(new Dimension(700, 600));
+        this.setMinimumSize(new Dimension(900, 600));
         initComponent();
     }
 
