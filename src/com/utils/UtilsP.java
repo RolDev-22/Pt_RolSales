@@ -7,7 +7,6 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 /**
@@ -48,6 +47,10 @@ public class UtilsP implements ButtonFactory {
     private final ImageIcon ic_stk = new ImageIcon(getImage("img_stk.png",
             25));
     private final ImageIcon ic_rsm = new ImageIcon(getImage("img_resum.png",
+            25));
+    private final ImageIcon ic_usr = new ImageIcon(getImage("img_usr.png",
+            25));
+    private final ImageIcon ic_time = new ImageIcon(getImage("img_time.png",
             25));
 
     //variable que permite implementar la clase Toolkit para luego obtener el 
@@ -164,6 +167,14 @@ public class UtilsP implements ButtonFactory {
     
     public ImageIcon getIc_rsm(){
         return ic_rsm;
+    }
+    
+    public ImageIcon getIc_usr(){
+        return ic_usr;
+    }
+    
+    public ImageIcon getIc_time(){
+        return ic_time;
     }
 
 }

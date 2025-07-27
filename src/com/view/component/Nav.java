@@ -1,55 +1,104 @@
 package com.view.component;
 
-import java.awt.Dimension;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import com.utils.UtilsP;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import javax.swing.JLabel;
+import java.util.Objects;
 
 /**
- * Autor: Rolando Murillo Aguirre Clase: Nav Descripción: Clase dedicada a la
- * interfaz del navar de la app Fecha: 18 jul. 2025
+ * Autor: Rolando Murillo Aguirre
+ * Clase: Nav
+ * Descripción: Barra de navegación principal de la app
+ * Fecha: 18 jul. 2025
  */
 public final class Nav extends JPanel {
-    private JLabel descriptionModule;
-    private JLabel iconModule;
-    private JLabel userName;
 
-    public Nav(UtilsP utlsP) {
-        this.setBackground(UtilsP.COLOR_BACKGROUND);
-        this.setPreferredSize(new Dimension(0,50));
-        this.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
-        initComponent();
+    private static final Font NAV_FONT = new Font("Georgina", Font.PLAIN, 18);
+    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm:ss");
+    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    private final UtilsP utilsTools;
+
+    private final JLabel descriptionModule = createStyledLabel();
+    private final JLabel iconModule = new JLabel();
+    private final JLabel userName = createStyledLabel();
+    private final JLabel iconUser = new JLabel();
+    private final JLabel timeView = createStyledLabel();
+    private final JLabel iconTime = new JLabel();
+
+    private final JPanel boxLeft = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+    private final JPanel boxCenter = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+    private final JPanel boxRight = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10));
+
+    public Nav(UtilsP utilsTools) {
+        this.utilsTools = Objects.requireNonNull(utilsTools, "UtilsP no puede ser null");
+        initPanel();
+        initComponents();
+        initClock();
     }
 
-    public void initComponent(){
-        contenDescription();
-    }
-    
-    private void contenDescription(){
-        descriptionModule = new JLabel();
-        iconModule = new JLabel();
-        userName = new JLabel();
-        descriptionModule.setFont(new Font("Georgina", Font.PLAIN, 18));
-        descriptionModule.setForeground(UtilsP.COLOR_BTN_GENERAL);
-        userName.setFont(new Font("Georgina", Font.PLAIN, 18));
-        userName.setForeground(UtilsP.COLOR_BTN_GENERAL);
-        this.add(descriptionModule);
-        this.add(iconModule);
-        this.add(userName);
+    private void initPanel() {
+        setBackground(UtilsP.COLOR_BACKGROUND);
+        setPreferredSize(new Dimension(0, 50));
+        setLayout(new BorderLayout(10, 10));
+
+        boxLeft.setOpaque(false);
+        boxCenter.setOpaque(false);
+        boxRight.setOpaque(false);
+
+        add(boxLeft, BorderLayout.WEST);
+        add(boxCenter, BorderLayout.CENTER);
+        add(boxRight, BorderLayout.EAST);
     }
 
+    private void initComponents() {
+        iconUser.setIcon(utilsTools.getIc_usr());
+        iconTime.setIcon(utilsTools.getIc_time());
+
+        boxLeft.add(descriptionModule);
+        boxLeft.add(iconModule);
+
+        boxCenter.add(timeView);
+        boxCenter.add(iconTime);
+
+        boxRight.add(userName);
+        boxRight.add(iconUser);
+    }
+
+    private void initClock() {
+        Timer timer = new Timer(1000, e -> {
+            String hora = LocalTime.now().format(TIME_FORMAT);
+            String fecha = LocalDate.now().format(DATE_FORMAT);
+            timeView.setText(fecha + " - " + hora);
+        });
+        timer.setInitialDelay(0);
+        timer.start();
+    }
+
+    private JLabel createStyledLabel() {
+        JLabel label = new JLabel();
+        label.setFont(NAV_FONT);
+        label.setForeground(UtilsP.COLOR_BTN_GENERAL);
+        return label;
+    }
+
+    // Getters públicos para modificar contenido desde fuera
     public JLabel getDescriptionModule() {
         return descriptionModule;
     }
-    
-    public JLabel getIconModule(){
+
+    public JLabel getIconModule() {
         return iconModule;
     }
-    
-    public JLabel getUserName(){
+
+    public JLabel getIconUser() {
+        return iconUser;
+    }
+
+    public JLabel getUserName() {
         return userName;
     }
-    
 }
