@@ -14,10 +14,8 @@ import javax.swing.JLabel;
 public final class Nav extends JPanel {
     private JLabel descriptionModule;
     private JLabel iconModule;
-    private UtilsP utlsTools;
 
     public Nav(UtilsP utlsP) {
-        this.utlsTools = utlsP;
         this.setBackground(UtilsP.COLOR_BACKGROUND);
         this.setPreferredSize(new Dimension(0,50));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
@@ -29,8 +27,8 @@ public final class Nav extends JPanel {
     }
     
     private void contenDescription(){
-        descriptionModule = new JLabel("MÓDULO DE VENTAS");
-        iconModule = new JLabel(this.utlsTools.getIc_vts());
+        descriptionModule = new JLabel();
+        iconModule = new JLabel();
         descriptionModule.setFont(new Font("Georgina", Font.PLAIN, 18));
         descriptionModule.setForeground(UtilsP.COLOR_BTN_GENERAL);
         this.add(descriptionModule);

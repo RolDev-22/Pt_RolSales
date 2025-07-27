@@ -212,7 +212,7 @@ public class LoginView extends JFrame {
         //Ajustes del botton de ingreso
         btnEnter.setText("Ingresar");
         btnEnter.setFont(new Font("Arial", Font.BOLD, 18));
-        btnEnter.setBackground(new Color(23, 78, 100, 240));
+        btnEnter.setBackground(new Color(23, 78, 100));
         btnEnter.setFocusable(false);
         btnEnter.setForeground(Color.WHITE);
         btnEnter.setPreferredSize(new Dimension(200, 50));

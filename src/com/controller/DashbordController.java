@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.view.DashbordView;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
@@ -11,10 +12,14 @@ import javax.swing.JButton;
  */
 public class DashbordController {
 
-    private DashbordView dashView;
+    private final DashbordView dashView;
+    private final String user;
+    private final String initialModule = "MÓDULO DE VENTAS";
 
-    public DashbordController(DashbordView dashViewP) {
+    public DashbordController(DashbordView dashViewP, String usrP, ImageIcon ic_initialP) {
         this.dashView = dashViewP;
+        this.user = usrP;
+        initialNav(initialModule,ic_initialP);
         initListeners();
     }
 
@@ -45,4 +50,10 @@ public class DashbordController {
             dashView.getNav().getIconModule().setIcon(button.getIcon());
         });
     }
+    
+    private void initialNav(String txtInit, ImageIcon imgInit){
+        dashView.getNav().getDescriptionModule().setText(txtInit);
+        dashView.getNav().getIconModule().setIcon(imgInit);
+    }
+    
 }

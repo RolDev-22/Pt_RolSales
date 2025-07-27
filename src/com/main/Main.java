@@ -16,8 +16,6 @@ public class Main {
     private static LoginView lgn;
     private static UserModel usMod;
     private static LoginController logCont;
-    private static DashbordController dshCont;
-    private static DashbordView dash;
 
     public static void main(String[] args) {
 
@@ -30,13 +28,11 @@ public class Main {
         }
         loading.dispose();
 
-        //lgn = new LoginView();
-        //usMod = new UserModel();
-        //logCont = new LoginController(usMod, lgn);
-        dash = new DashbordView();
-        dshCont = new DashbordController(dash);
+        lgn = new LoginView();
+        usMod = new UserModel();
+        logCont = new LoginController(usMod, lgn);
 
-        //logCont.iniciar();
-        dshCont.iniciar();
+        logCont.iniciar();
+        //dshCont.iniciar();
     }
 }
