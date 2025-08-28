@@ -33,6 +33,7 @@ public class LoginController {
                 cleanInputs();
                 msjSystem("Bienvenid@ " + usr);
                 loginView.dispose();
+                
                 dashbordCont = new DashbordController(dashbordView,usr,
                         new UtilsP().getIc_vts());
                 dashbordCont.iniciar();
