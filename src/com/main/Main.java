@@ -4,7 +4,6 @@ import com.controller.LoadController;
 import com.controller.LoginController;
 import com.model.UserModel;
 import com.view.LoginView;
-import com.view.component.LoadingPage;
 
 /**
  * Autor: Rolando Murillo Aguirre Clase: Main Descripción: [Clase principal de
@@ -16,20 +15,18 @@ public class Main {
     private static UserModel usMod;
     private static LoginController logCont;
 
-    private static LoadingPage loading;
     private static LoadController ldCont;
 
     public static void main(String[] args) {
 
-        loading = new LoadingPage();
-        ldCont = new LoadController(loading);
-        ldCont.initSesion();
+        ldCont = new LoadController();
+        ldCont.init();//Inicio de loadpage
         
         lgn = new LoginView();
         usMod = new UserModel();
-        logCont = new LoginController(usMod, lgn);
+        logCont = new LoginController(usMod, lgn, ldCont);
 
         
-        logCont.iniciar();
+        logCont.iniciar();//inicio de la vista del login
     }
 }

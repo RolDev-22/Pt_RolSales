@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.view.DashbordView;
+import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -16,9 +17,11 @@ public class DashbordController {
     private final String user;
     private final String initialModule = "MÓDULO DE VENTAS";
 
-    public DashbordController(DashbordView dashViewP, String usrP, ImageIcon ic_initialP) {
+    public DashbordController(DashbordView dashViewP, String usrP,
+            ImageIcon ic_initialP) {
         this.dashView = dashViewP;
         this.user = usrP;
+
         initialNav(initialModule,ic_initialP,user);
         initListeners();
     }
@@ -32,22 +35,24 @@ public class DashbordController {
         dashView.getMenu().getBtnExit().addActionListener(e -> dashView.dispose());
 
         // Listeners para módulos
-        addModuleListener(dashView.getMenu().getBtnVentas(), "MÓDULO DE VENTAS");
-        addModuleListener(dashView.getMenu().getBtnInventario(), "MÓDULO DE INVENTARIO");
-        addModuleListener(dashView.getMenu().getBtnResumen(), "MÓDULO DE RESUMEN");
-        addModuleListener(dashView.getMenu().getBtnReportes(), "MÓDULO DE REPORTES");
-        addModuleListener(dashView.getMenu().getBtnClientes(), "MÓDULO DE CLIENTES");
-        addModuleListener(dashView.getMenu().getBtnEdicion(), "MÓDULO DE EDICIÓN");
+        addModuleListener(dashView.getMenu().getBtnVentas(), "MÓDULO DE VENTAS", Color.BLUE);
+        addModuleListener(dashView.getMenu().getBtnInventario(), "MÓDULO DE INVENTARIO", Color.CYAN);
+        addModuleListener(dashView.getMenu().getBtnResumen(), "MÓDULO DE RESUMEN", Color.GREEN);
+        addModuleListener(dashView.getMenu().getBtnReportes(), "MÓDULO DE REPORTES", Color.PINK);
+        addModuleListener(dashView.getMenu().getBtnClientes(), "MÓDULO DE CLIENTES",Color.magenta);
+        addModuleListener(dashView.getMenu().getBtnEdicion(), "MÓDULO DE EDICIÓN", Color.orange);
     }
 
     /**
      * Método para registrar acción a un botón de menú y cambiar contenido del
      * módulo.
      */
-    private void addModuleListener(JButton button, String moduleDescription) {
+    private void addModuleListener(JButton button, String moduleDescription,
+            Color clr) {
         button.addActionListener(e -> {
             dashView.getNav().getDescriptionModule().setText(moduleDescription);
             dashView.getNav().getIconModule().setIcon(button.getIcon());
+            dashView.getModule().setBackground(clr);
         });
     }
     

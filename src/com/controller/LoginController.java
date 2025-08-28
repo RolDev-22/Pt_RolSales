@@ -15,33 +15,43 @@ public class LoginController {
 
     private UserModel model;
     private LoginView loginView;
+    private final LoadController loadCont;
     private static DashbordView dashbordView;
     private static DashbordController dashbordCont;
 
-    public LoginController(UserModel modelP, LoginView loginViewP) {
+    public LoginController(UserModel modelP, LoginView loginViewP,
+            LoadController loadContP) {
         this.model = modelP;
         this.loginView = loginViewP;
+        this.loadCont = loadContP;
         dashbordView = new DashbordView();
-        
 
         this.loginView.btnEnter.addActionListener(((e) -> {
             String usr = model.sanitationUser(loginView.inputUser.getText());
             String psw = model.sanitationPasword(new String(loginView.inputPas
                     .getPassword()));
-
-            if (model.userVerification(usr, psw)) {
-                cleanInputs();
-                msjSystem("Bienvenid@ " + usr);
-                loginView.dispose();
-                
-                dashbordCont = new DashbordController(dashbordView,usr,
-                        new UtilsP().getIc_vts());
-                dashbordCont.iniciar();
-            } else {
-                cleanInputs();
-                msjSystem("Usuario o contraseña incorrectos");
-            }
+            initDashboard(usr, psw);
         }));
+    }
+
+    private void initDashboard(String usrP, String pswP) {
+        if (model.userVerification(usrP, pswP)) {
+            cleanInputs();
+            msjSystem("Bienvenid@ " + usrP);
+            loginView.dispose();
+
+            // Mostrar loading 3s y luego abrir el dashboard
+            loadCont.showFor(3000, () -> {
+                dashbordCont = new DashbordController(
+                        dashbordView, usrP, new UtilsP().getIc_vts()
+                );
+                dashbordCont.iniciar();
+            });
+
+        } else {
+            cleanInputs();
+            msjSystem("Usuario o contraseña incorrectos");
+        }
     }
 
     private void msjSystem(String msj) {
