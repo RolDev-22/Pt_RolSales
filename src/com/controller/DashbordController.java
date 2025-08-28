@@ -1,65 +1,61 @@
 package com.controller;
 
+import com.module.ModuleManager;
 import com.view.DashbordView;
+import com.view.module.*;
+import com.utils.UtilsP;
+import javax.swing.*;
 import java.awt.Color;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 
-/**
- * Autor: Rolando Murillo Aguirre Clase: DashbordController Descripción: Clase
- * encargada de mostrar u ocultar las vistas, es un intermediario entre la parte
- * gráfica (Vistas) y el modelo de negocio (Model) del Dashbord Fecha: 16 jul.
- * 2025
- */
 public class DashbordController {
 
     private final DashbordView dashView;
     private final String user;
-    private final String initialModule = "MÓDULO DE VENTAS";
+    private final ModuleManager modules;
 
-    public DashbordController(DashbordView dashViewP, String usrP,
-            ImageIcon ic_initialP) {
+    public DashbordController(DashbordView dashViewP, String usrP, ImageIcon icInitial) {
         this.dashView = dashViewP;
         this.user = usrP;
 
-        initialNav(initialModule,ic_initialP,user);
-        initListeners();
-    }
+        // 1) Crear manager sobre el panel central:
+        this.modules = new ModuleManager(dashView.getModule());
 
-    public void iniciar() {
-        dashView.setVisible(true);
-    }
-
-    private void initListeners() {
-        // Salir
-        dashView.getMenu().getBtnExit().addActionListener(e -> dashView.dispose());
-
-        // Listeners para módulos
-        addModuleListener(dashView.getMenu().getBtnVentas(), "MÓDULO DE VENTAS", Color.BLUE);
-        addModuleListener(dashView.getMenu().getBtnInventario(), "MÓDULO DE INVENTARIO", Color.CYAN);
-        addModuleListener(dashView.getMenu().getBtnResumen(), "MÓDULO DE RESUMEN", Color.GREEN);
-        addModuleListener(dashView.getMenu().getBtnReportes(), "MÓDULO DE REPORTES", Color.PINK);
-        addModuleListener(dashView.getMenu().getBtnClientes(), "MÓDULO DE CLIENTES",Color.magenta);
-        addModuleListener(dashView.getMenu().getBtnEdicion(), "MÓDULO DE EDICIÓN", Color.orange);
-    }
-
-    /**
-     * Método para registrar acción a un botón de menú y cambiar contenido del
-     * módulo.
-     */
-    private void addModuleListener(JButton button, String moduleDescription,
-            Color clr) {
-        button.addActionListener(e -> {
-            dashView.getNav().getDescriptionModule().setText(moduleDescription);
-            dashView.getNav().getIconModule().setIcon(button.getIcon());
-            dashView.getModule().setBackground(clr);
+        // 2) Definir cómo se actualiza el Nav del dashboard
+        modules.setNavUpdater(m -> {
+            dashView.getNav().getDescriptionModule().setText(m.getTitle());
+            dashView.getNav().getIconModule().setIcon(m.getIcon());
+            dashView.getNav().getUserName().setText(user);
         });
+
+        // 3) Registrar módulos (lazy). Usa tus propios iconos desde UtilsP:
+        UtilsP u = new UtilsP();
+        modules.register("ventas",     () -> new VentasModule(user, u.getIc_vts()));
+        modules.register("inventario", () -> new InventarioModule(u.getIc_stk()));
+        modules.register("resumen",    () -> new ResumenModule(u.getIc_rsm()));
+        modules.register("reportes",   () -> new ReportesModule(u.getIc_rpts()));
+        modules.register("clientes",   () -> new ClientesModule(u.getIc_clts()));
+        modules.register("edicion",    () -> new EdicionModule(u.getIc_edt()));
+
+        // 4) Listeners de menú -> mostrar por clave
+        addModuleListener(dashView.getMenu().getBtnVentas(), "ventas");
+        addModuleListener(dashView.getMenu().getBtnInventario(), "inventario");
+        addModuleListener(dashView.getMenu().getBtnResumen(), "resumen");
+        addModuleListener(dashView.getMenu().getBtnReportes(), "reportes");
+        addModuleListener(dashView.getMenu().getBtnClientes(), "clientes");
+        addModuleListener(dashView.getMenu().getBtnEdicion(), "edicion");
+
+        // 5) Inicial
+        modules.show("ventas"); // muestra y actualiza Nav
+        initListenersGenerales();
     }
-    
-    private void initialNav(String txtInit, ImageIcon imgInit, String usr){
-        dashView.getNav().getDescriptionModule().setText(txtInit);
-        dashView.getNav().getIconModule().setIcon(imgInit);
-        dashView.getNav().getUserName().setText(usr);
+
+    public void iniciar() { dashView.setVisible(true); }
+
+    private void addModuleListener(JButton button, String key) {
+        button.addActionListener(e -> modules.show(key));
     }
-    
+
+    private void initListenersGenerales() {
+        dashView.getMenu().getBtnExit().addActionListener(e -> dashView.dispose());
+    }
 }
